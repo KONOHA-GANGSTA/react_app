@@ -1,4 +1,4 @@
-# ДЗ 1
+# HW 1
 
-- Отрендерить список с наушниками JSX
-- (\*) Отрендерить без jsx
+- Render headphones list with JSX
+- (\*) Render headphones list without JSX
