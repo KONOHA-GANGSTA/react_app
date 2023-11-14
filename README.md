@@ -1,4 +1,4 @@
 # HW 1
 
-- Render headphones list with JSX
-- (\*) Render headphones list without JSX
+- Render restaurants list with JSX
+- (\*) Render restaurants list without JSX
