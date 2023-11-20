@@ -1,12 +1,12 @@
-import { RestaurantsList } from "./components/Restaurants/component";
-import { RestaurantsTabList } from "./components/RestaurantsTabs/component";
+import { Restaurants } from "./components/Restaurants/component";
+import { RestaurantsTabs } from "./components/RestaurantsTabs/component";
 import { restaurants } from "./constants/mock";
 
 export const App = () => {
   return (
     <>
-      <RestaurantsTabList restaurants={restaurants} />
-      <RestaurantsList restaurants={restaurants} />
+      <RestaurantsTabs restaurants={restaurants} />
+      <Restaurants restaurants={restaurants} />
     </>
   );
 };

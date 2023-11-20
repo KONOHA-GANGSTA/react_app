@@ -1,6 +1,6 @@
 import { RestaurantTab } from "../RestaurantTab/component";
 
-export const RestaurantsTabList = ({ restaurants }) => {
+export const RestaurantsTabs = ({ restaurants }) => {
   return (
     <div>
       {restaurants.map((restaurant) => (
