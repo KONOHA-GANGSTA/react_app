@@ -1,5 +1,5 @@
-import { RestaurantsList } from "./components/RestaurantsList/component";
-import { RestaurantsTabList } from "./components/RestaurantsTabList/component";
+import { RestaurantsList } from "./components/Restaurants/component";
+import { RestaurantsTabList } from "./components/RestaurantsTabs/component";
 import { restaurants } from "./constants/mock";
 
 export const App = () => {
