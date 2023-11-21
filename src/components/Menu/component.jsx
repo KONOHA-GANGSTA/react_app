@@ -2,7 +2,7 @@ import { Dish } from "../Dish/component";
 
 export const Menu = ({ dishes }) => {
   return (
-    <>
+    <div>
       <h2>Меню</h2>
       <ul>
         {dishes.map(({ name }) => (
@@ -11,6 +11,6 @@ export const Menu = ({ dishes }) => {
           </li>
         ))}
       </ul>
-    </>
+    </div>
   );
 };

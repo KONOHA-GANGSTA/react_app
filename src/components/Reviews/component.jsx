@@ -2,7 +2,7 @@ import { Review } from "../Review/component";
 
 export const Reviews = ({ reviews }) => {
   return (
-    <>
+    <div>
       <h2>Отзывы</h2>
       <ul>
         {reviews.map(({ text }) => (
@@ -11,6 +11,6 @@ export const Reviews = ({ reviews }) => {
           </li>
         ))}
       </ul>
-    </>
+    </div>
   );
 };

@@ -1,3 +1,3 @@
 export const Review = ({ text }) => {
-  return <>{text}</>;
+  return <div>{text}</div>;
 };
