@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Restaurants } from "./components/Restaurants/component";
+import { Restaurant } from "./components/Restaurant/component";
 import { RestaurantsTabs } from "./components/RestaurantsTabs/component";
 import { restaurants } from "./constants/mock";
 
@@ -11,7 +11,7 @@ export const App = () => {
         restaurants={restaurants}
         changeSelected={changeSelectedRestaurant}
       />
-      <Restaurants
+      <Restaurant
         restaurants={restaurants}
         selectedRestaurant={selectedRestaurant}
       />
