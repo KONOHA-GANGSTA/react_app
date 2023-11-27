@@ -1,14 +1,11 @@
-import { useState } from "react";
-
-export const Counter = ({ min, max }) => {
-  const [number, setNumber] = useState(0);
+export const Counter = ({ number, increment, decrement, min, max }) => {
   return (
     <div>
-      <button onClick={() => setNumber(number == min ? 0 : number - 1)}>
+      <button type="button" onClick={decrement} disabled={number <= min}>
         -
       </button>
       <div>{number}</div>
-      <button onClick={() => setNumber(number == max ? 5 : number + 1)}>
+      <button type="button" onClick={increment} disabled={number >= max}>
         +
       </button>
     </div>
