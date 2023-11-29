@@ -1,3 +1,5 @@
+import styles from "./styles.module.css";
+
 export const Review = ({ text }) => {
-  return <div>{text}</div>;
+  return <div className={styles.item}>{text}</div>;
 };
