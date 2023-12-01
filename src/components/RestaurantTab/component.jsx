@@ -1,3 +1,3 @@
-export const RestaurantTab = ({ name }) => {
-  return <button>{name}</button>;
+export const RestaurantTab = ({ name, changeSelected }) => {
+  return <button onClick={() => changeSelected(name)}>{name}</button>;
 };
