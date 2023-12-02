@@ -13,6 +13,7 @@ export const RestaurantPage = () => {
         selected={selectedRestaurant}
         changeSelected={changeSelectedRestaurant}
       />
+
       <Restaurant
         restaurants={restaurants}
         selectedRestaurant={selectedRestaurant}

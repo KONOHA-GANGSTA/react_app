@@ -1,0 +1,12 @@
+.layout {
+  font-size: 1em;
+  font-family: "IBM Plex Sans";
+}
+
+.circled {
+  border-radius: 50%;
+}
+
+.default {
+  border-radius: 0;
+}
