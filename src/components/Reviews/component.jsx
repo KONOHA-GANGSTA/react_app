@@ -3,9 +3,9 @@ import { ReviewForm } from "../ReviewForm/component";
 import styles from "./styles.module.css";
 import cn from "classnames";
 
-export const Reviews = ({ reviews }) => {
+export const Reviews = ({ reviews, className }) => {
   return (
-    <div>
+    <div className={className}>
       <div>
         <h2 className={cn(styles.item, styles.header)}>Отзывы</h2>
         <ul>

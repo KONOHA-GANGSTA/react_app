@@ -1,6 +1,7 @@
 import { useCallback, useRef } from "react";
 import { RestaurantTab } from "../RestaurantTab/component";
 import styles from "./styles.module.css";
+import cn from "classnames";
 
 const move_gradient = (event, layout, gradient) => {
   let position =
@@ -11,7 +12,12 @@ const move_gradient = (event, layout, gradient) => {
   gradient.style.left = position;
 };
 
-export const RestaurantsTabs = ({ restaurants, selected, changeSelected }) => {
+export const RestaurantsTabs = ({
+  restaurants,
+  selected,
+  changeSelected,
+  className,
+}) => {
   const layout = useRef();
   const gradient = useRef();
   const callback = useCallback((event) => {
@@ -24,7 +30,7 @@ export const RestaurantsTabs = ({ restaurants, selected, changeSelected }) => {
   return (
     <div
       ref={layout}
-      className={styles.tabs}
+      className={cn(styles.tabs, className)}
       onMouseMove={callback}
       onMouseLeave={leave}
     >

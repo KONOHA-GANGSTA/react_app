@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { Counter } from "../Counter/component";
 import styles from "./styles.module.css";
+import cn from "classnames";
 
-export const Dish = ({ title }) => {
+export const Dish = ({ title, className }) => {
   const [amount, setAmount] = useState(0);
   return (
-    <div className={styles.layout}>
+    <div className={cn(styles.layout, className)}>
       <div>{title}</div>
       <Counter
         number={amount}

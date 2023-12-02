@@ -1,13 +1,14 @@
 import { Menu } from "../Menu/component";
 import { Reviews } from "../Reviews/component";
 import styles from "./styles.module.css";
+import cn from "classnames";
 
-export const Restaurant = ({ restaurants, selectedRestaurant }) => {
+export const Restaurant = ({ restaurants, selectedRestaurant, className }) => {
   const restaurant = restaurants.find(
     ({ name }) => name === selectedRestaurant
   );
   return (
-    <div className={styles.layout}>
+    <div className={cn(styles.layout, className)}>
       {!selectedRestaurant && (
         <div className={styles.noselect}>Выберите ресторан</div>
       )}

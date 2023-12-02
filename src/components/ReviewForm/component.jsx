@@ -22,14 +22,14 @@ const reducer = (state, action) => {
   }
 };
 
-export const ReviewForm = () => {
+export const ReviewForm = ({ className }) => {
   const [formValue, dispatch] = useReducer(reducer, DEFAULT_FORM_VALUE);
   useEffect(() => {
     dispatch({ type: "setText", payload: DEFAULT_FORM_VALUE.text });
     dispatch({ type: "setRating", payload: DEFAULT_FORM_VALUE.rating });
   }, [formValue.name]);
   return (
-    <div>
+    <div className={className}>
       <h3 className={cn(styles.item, styles.header)}>Оставьте отзыв</h3>
       <form className={styles.layout}>
         <div className={styles.item}>

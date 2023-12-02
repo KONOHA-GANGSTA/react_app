@@ -2,9 +2,9 @@ import { Dish } from "../Dish/component";
 import styles from "./styles.module.css";
 import cn from "classnames";
 
-export const Menu = ({ dishes }) => {
+export const Menu = ({ dishes, className }) => {
   return (
-    <div>
+    <div className={className}>
       <h2 className={cn(styles.item, styles.header)}>Меню</h2>
       <ul>
         {dishes.map(({ name }) => (

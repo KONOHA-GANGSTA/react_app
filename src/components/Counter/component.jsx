@@ -8,9 +8,12 @@ export const Counter = ({
   min,
   max,
   aliginEnd,
+  className,
 }) => {
   return (
-    <div className={cn(styles.layout, { [styles.rowEnd]: aliginEnd })}>
+    <div
+      className={cn(styles.layout, className, { [styles.rowEnd]: aliginEnd })}
+    >
       <button
         className={styles.button}
         type="button"

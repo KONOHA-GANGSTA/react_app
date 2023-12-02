@@ -1,3 +1,3 @@
-export const Footer = () => {
-  return <div>FOOTER</div>;
+export const Footer = ({ className }) => {
+  return <div className={className}>FOOTER</div>;
 };
