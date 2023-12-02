@@ -12,11 +12,11 @@ export const App = () => {
     <>
       <RestaurantsTabs
         restaurants={restaurants}
+        selected={selectedRestaurant}
         changeSelected={changeSelectedRestaurant}
       />
       <Restaurant
         restaurant={restaurant}
-        selectedRestaurant={selectedRestaurant}
       />
     </>
   );
