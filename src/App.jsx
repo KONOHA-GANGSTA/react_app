@@ -6,6 +6,9 @@ import "./styles.module.css";
 
 export const App = () => {
   const [selectedRestaurant, changeSelectedRestaurant] = useState(null);
+  const restaurant = restaurants.find(
+    ({ name }) => name === selectedRestaurant
+  );
   return (
     <>
       <RestaurantsTabs
@@ -14,7 +17,7 @@ export const App = () => {
         changeSelected={changeSelectedRestaurant}
       />
       <Restaurant
-        restaurants={restaurants}
+        restaurant={restaurant}
         selectedRestaurant={selectedRestaurant}
       />
     </>
