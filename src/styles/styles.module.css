@@ -13,4 +13,11 @@ body > div {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  height: 100%;
+}
+
+html,
+body,
+#root {
+  height: 100vh;
 }

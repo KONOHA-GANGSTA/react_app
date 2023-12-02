@@ -1,7 +1,5 @@
 .tab {
-  --c: goldenrod;
   font-size: 1.5em;
-  z-index: 3;
   background-color: rgba(0, 0, 0, 0);
   transition: 0.5s;
   font-family: "Ephesis";
@@ -25,7 +23,7 @@
   position: absolute;
   width: 25%;
   height: 100%;
-  background-color: var(--c);
+  background-color: goldenrod;
   transform: translateY(150%);
   border-radius: 50%;
   left: calc((var(--n) - 1) * 25%);
@@ -53,5 +51,5 @@
 }
 
 .active {
-  background-color: var(--c);
+  background-color: goldenrod;
 }

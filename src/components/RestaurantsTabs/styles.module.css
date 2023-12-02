@@ -28,3 +28,7 @@
   pointer-events: none;
   z-index: 2;
 }
+
+.topLevel {
+  z-index: 3;
+}
