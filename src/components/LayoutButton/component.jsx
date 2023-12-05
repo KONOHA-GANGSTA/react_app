@@ -1,6 +1,6 @@
 import styles from "./styles.module.css";
 import cn from "classnames";
-import { useButtonTheme } from "../../hooks/useButtonTheme";
+import { useControls } from "../../hooks/useControlsContext";
 
 export const LayoutButton = ({
   className,
@@ -9,15 +9,15 @@ export const LayoutButton = ({
   type,
   children,
 }) => {
-  const circled = useButtonTheme();
+  const { square } = useControls();
   return (
     <button
       type={type}
       disabled={disabled}
       onClick={onClick}
       className={cn(className, styles.layout, {
-        [styles.circled]: circled,
-        [styles.default]: !circled,
+        [styles.circled]: !square,
+        [styles.default]: square,
       })}
     >
       {children}
