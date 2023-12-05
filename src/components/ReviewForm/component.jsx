@@ -1,5 +1,7 @@
 import { useEffect, useReducer } from "react";
 import { Counter } from "../Counter/component";
+import styles from "./styles.module.css";
+import cn from "classnames";
 
 const DEFAULT_FORM_VALUE = {
   name: "",
@@ -20,18 +22,17 @@ const reducer = (state, action) => {
   }
 };
 
-export const ReviewForm = () => {
+export const ReviewForm = ({ className }) => {
   const [formValue, dispatch] = useReducer(reducer, DEFAULT_FORM_VALUE);
   useEffect(() => {
     dispatch({ type: "setText", payload: DEFAULT_FORM_VALUE.text });
     dispatch({ type: "setRating", payload: DEFAULT_FORM_VALUE.rating });
   }, [formValue.name]);
-  console.log(formValue);
   return (
-    <div>
-      <h3>Оставьте отзыв</h3>
-      <form>
-        <div>
+    <div className={className}>
+      <h3 className={cn(styles.item, styles.header)}>Оставьте отзыв</h3>
+      <form className={styles.layout}>
+        <div className={styles.item}>
           <input
             type="text"
             placeholder="Name"
@@ -40,17 +41,7 @@ export const ReviewForm = () => {
             }
           />
         </div>
-        <div>
-          <input
-            type="textarea"
-            placeholder="Text"
-            onChange={(event) =>
-              dispatch({ type: "setText", payload: event.target.value })
-            }
-            value={formValue.text}
-          />
-        </div>
-        <div>
+        <div className={styles.item}>
           <span>Rating:</span>
           <Counter
             number={formValue.rating}
@@ -62,6 +53,17 @@ export const ReviewForm = () => {
             }
             min={1}
             max={5}
+            aliginEnd
+          />
+        </div>
+        <div className={styles.item}>
+          <input
+            type="textarea"
+            placeholder="Text"
+            onChange={(event) =>
+              dispatch({ type: "setText", payload: event.target.value })
+            }
+            value={formValue.text}
           />
         </div>
       </form>

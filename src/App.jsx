@@ -1,23 +1,6 @@
-import { useState } from "react";
-import { Restaurant } from "./components/Restaurant/component";
-import { RestaurantsTabs } from "./components/RestaurantsTabs/component";
-import { restaurants } from "./constants/mock";
+import { RestaurantPage } from "./pages/RestaurantPage/component";
+import "./styles/styles.module.css";
 
 export const App = () => {
-  const [selectedRestaurant, changeSelectedRestaurant] = useState(null);
-  const restaurant = restaurants.find(
-    ({ name }) => name === selectedRestaurant
-  );
-  return (
-    <>
-      <RestaurantsTabs
-        restaurants={restaurants}
-        selected={selectedRestaurant}
-        changeSelected={changeSelectedRestaurant}
-      />
-      <Restaurant
-        restaurant={restaurant}
-      />
-    </>
-  );
+  return <RestaurantPage />;
 };

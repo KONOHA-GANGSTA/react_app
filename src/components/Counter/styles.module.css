@@ -1,0 +1,36 @@
+.layout {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+}
+
+.button {
+  background: None;
+  border-radius: 50%;
+  border: 2px solid rgb(135, 0, 0);
+  color: rgb(135, 0, 0);
+  font-size: 1em;
+  width: 1.5em;
+  height: 1.5em;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.button:hover {
+  transform: scale(105%);
+  box-shadow: 1px 1px rgb(139, 63, 63);
+}
+
+.button:disabled {
+  opacity: 0.5;
+}
+
+.rowEnd {
+  margin-left: auto;
+}
+
+.value {
+  width: 1.5em;
+  text-align: center;
+}

@@ -1,0 +1,23 @@
+body {
+  margin: 0;
+  font-size: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(90deg, orange, rgb(255, 193, 77), orange);
+  margin-bottom: 20px;
+}
+
+body > div {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: 100%;
+}
+
+html,
+body,
+#root {
+  height: 100vh;
+}
