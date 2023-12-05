@@ -1,5 +1,6 @@
 import { Menu } from "../Menu/component";
 import { Reviews } from "../Reviews/component";
+import styles from "./styles.module.css";
 
 export const Restaurant = ({ restaurant }) => {
   return (
