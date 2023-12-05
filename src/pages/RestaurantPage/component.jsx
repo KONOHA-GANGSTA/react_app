@@ -6,6 +6,10 @@ import { Layout } from "../../components/layout/component";
 
 export const RestaurantPage = () => {
   const [selectedRestaurant, changeSelectedRestaurant] = useState(null);
+  const restaurant = restaurants.find(
+    ({ name }) => name === selectedRestaurant
+  );
+
   return (
     <Layout>
       <RestaurantsTabs
@@ -13,10 +17,7 @@ export const RestaurantPage = () => {
         selected={selectedRestaurant}
         changeSelected={changeSelectedRestaurant}
       />
-      <Restaurant
-        restaurants={restaurants}
-        selectedRestaurant={selectedRestaurant}
-      />
+      <Restaurant restaurant={restaurant} />
     </Layout>
   );
 };

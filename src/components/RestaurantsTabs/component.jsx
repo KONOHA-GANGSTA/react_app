@@ -11,6 +11,7 @@ const move_gradient = (event, layout, setGradPosition) => {
   setGradPosition({ transition: "None", left: position });
 };
 
+
 export const RestaurantsTabs = ({
   restaurants,
   selected,
