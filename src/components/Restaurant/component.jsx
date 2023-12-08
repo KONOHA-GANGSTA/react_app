@@ -1,22 +1,24 @@
+import { useSelector } from "react-redux";
 import { Menu } from "../Menu/component";
 import { Reviews } from "../Reviews/component";
 import styles from "./styles.module.css";
 import cn from "classnames";
+import { selectRestaurantNameById } from "../../redux/features/entities/restaurants/selectors";
 
-export const Restaurant = ({ restaurants, selectedRestaurant, className }) => {
-  const restaurant = restaurants.find(
-    ({ name }) => name === selectedRestaurant
+export const Restaurant = ({ selectedRestaurantId, className }) => {
+  const name = useSelector((state) =>
+    selectRestaurantNameById(state, selectedRestaurantId)
   );
   return (
     <div className={cn(styles.layout, className)}>
-      {!selectedRestaurant && (
+      {!selectedRestaurantId && (
         <div className={styles.noselect}>Выберите ресторан</div>
       )}
-      {selectedRestaurant && (
+      {selectedRestaurantId && (
         <div className={styles.layout}>
-          <h1 className={styles.title}>{restaurant.name}</h1>
-          <Menu dishes={restaurant.menu} />
-          <Reviews reviews={restaurant.reviews} />
+          <h1 className={styles.title}>{name}</h1>
+          <Menu restaurantId={selectedRestaurantId} />
+          <Reviews restaurantId={selectedRestaurantId} />
         </div>
       )}
     </div>

@@ -1,19 +1,20 @@
+import { useSelector } from "react-redux";
 import styles from "./style.module.css";
 import cn from "classnames";
-export const RestaurantTab = ({
-  name,
-  selected,
-  changeSelected,
-  className,
-}) => {
+import { selectRestaurantNameById } from "../../redux/features/entities/restaurants/selectors";
+
+export const RestaurantTab = ({ id, selected, changeSelected, className }) => {
+  const name = useSelector((state) => selectRestaurantNameById(state, id));
   return (
     <button
       className={cn(
         styles.tab,
-        { [styles.active]: selected === name },
+        { [styles.active]: selected === id },
         className
       )}
-      onClick={() => changeSelected(name)}
+      onClick={() => {
+        changeSelected(id);
+      }}
     >
       {name}
       <span />
