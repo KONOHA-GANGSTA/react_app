@@ -5,6 +5,7 @@ import styles from "./styles.module.css";
 import cn from "classnames";
 import { selectRestaurantNameById } from "../../redux/features/entities/restaurants/selectors";
 
+
 export const Restaurant = ({ selectedRestaurantId, className }) => {
   const name = useSelector((state) =>
     selectRestaurantNameById(state, selectedRestaurantId)
@@ -20,6 +21,8 @@ export const Restaurant = ({ selectedRestaurantId, className }) => {
           <Menu restaurantId={selectedRestaurantId} />
           <Reviews restaurantId={selectedRestaurantId} />
         </div>
+      ) : (
+        <div>Выберите ресторан</div>
       )}
     </div>
   );
