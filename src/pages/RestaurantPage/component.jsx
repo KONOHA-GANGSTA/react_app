@@ -5,6 +5,7 @@ import { restaurants } from "../../constants/mock";
 import { Layout } from "../../components/layout/component";
 
 export const RestaurantPage = () => {
+
   const [selectedRestaurantId, changeSelectedRestaurantId] = useState(null);
   return (
     <Layout>
@@ -12,7 +13,6 @@ export const RestaurantPage = () => {
         selected={selectedRestaurantId}
         changeSelected={changeSelectedRestaurantId}
       />
-
       <Restaurant selectedRestaurantId={selectedRestaurantId} />
     </Layout>
   );

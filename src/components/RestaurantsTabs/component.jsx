@@ -13,6 +13,7 @@ const move_gradient = (event, layout, setGradPosition) => {
   setGradPosition({ transition: "None", left: position });
 };
 
+
 export const RestaurantsTabs = ({ selected, changeSelected, className }) => {
   const layout = useRef();
   const [gradPosition, setGradPosition] = useState({

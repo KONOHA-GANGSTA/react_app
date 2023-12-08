@@ -22,7 +22,7 @@ export const Restaurant = ({ selectedRestaurantId, className }) => {
           <Reviews restaurantId={selectedRestaurantId} />
         </div>
       ) : (
-        <div>Выберите ресторан</div>
+        <div className={styles.noselect}>Выберите ресторан</div>
       )}
     </div>
   );
