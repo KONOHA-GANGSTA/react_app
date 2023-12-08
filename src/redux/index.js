@@ -11,6 +11,7 @@ const store = configureStore({
     users: usersSlice.reducer,
     reviews: reviewsSlice.reducer,
   },
+  middleware: (getDefaultMiddlewares) => getDefaultMiddlewares(),
 });
 
 export default store;
