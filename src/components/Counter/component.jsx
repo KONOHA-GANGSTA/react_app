@@ -1,3 +1,4 @@
+import { LayoutButton } from "../LayoutButton/component";
 import styles from "./styles.module.css";
 import cn from "classnames";
 
@@ -14,23 +15,23 @@ export const Counter = ({
     <div
       className={cn(styles.layout, className, { [styles.rowEnd]: aliginEnd })}
     >
-      <button
+      <LayoutButton
         className={styles.button}
         type="button"
         onClick={decrement}
         disabled={number <= min}
       >
         -
-      </button>
+      </LayoutButton>
       <div className={styles.value}>{number}</div>
-      <button
+      <LayoutButton
         className={styles.button}
         type="button"
         onClick={increment}
         disabled={number >= max}
       >
         +
-      </button>
+      </LayoutButton>
     </div>
   );
 };

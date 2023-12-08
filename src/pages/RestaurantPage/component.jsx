@@ -5,19 +5,15 @@ import { restaurants } from "../../constants/mock";
 import { Layout } from "../../components/layout/component";
 
 export const RestaurantPage = () => {
-  const [selectedRestaurant, changeSelectedRestaurant] = useState(null);
-  const restaurant = restaurants.find(
-    ({ name }) => name === selectedRestaurant
-  );
 
+  const [selectedRestaurantId, changeSelectedRestaurantId] = useState(null);
   return (
     <Layout>
       <RestaurantsTabs
-        restaurants={restaurants}
-        selected={selectedRestaurant}
-        changeSelected={changeSelectedRestaurant}
+        selected={selectedRestaurantId}
+        changeSelected={changeSelectedRestaurantId}
       />
-      <Restaurant restaurant={restaurant} />
+      <Restaurant selectedRestaurantId={selectedRestaurantId} />
     </Layout>
   );
 };
