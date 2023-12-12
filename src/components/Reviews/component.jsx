@@ -6,6 +6,7 @@ import { useGetReviewsQuery } from "../../redux/services/api";
 
 export const Reviews = ({ restaurant, className }) => {
   const { data, isFetching } = useGetReviewsQuery(restaurant.id);
+  console.log(data);
 
   if (isFetching)
     return (
@@ -27,7 +28,7 @@ export const Reviews = ({ restaurant, className }) => {
           ))}
         </ul>
       </div>
-      <ReviewForm />
+      <ReviewForm restaurantId={restaurant.id} />
     </div>
   );
 };

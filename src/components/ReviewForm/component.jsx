@@ -2,11 +2,14 @@ import { useEffect, useReducer } from "react";
 import { Counter } from "../Counter/component";
 import styles from "./styles.module.css";
 import cn from "classnames";
+import { LayoutButton } from "../LayoutButton/component";
+import { useCreateReviewMutation } from "../../redux/services/api";
 
 const DEFAULT_FORM_VALUE = {
   name: "",
   text: "",
   rating: 1,
+  userId: "a304959a-76c0-4b34-954a-b38dbf310360",
 };
 
 const reducer = (state, action) => {
@@ -22,12 +25,16 @@ const reducer = (state, action) => {
   }
 };
 
-export const ReviewForm = ({ className }) => {
+export const ReviewForm = ({ restaurantId, className }) => {
   const [formValue, dispatch] = useReducer(reducer, DEFAULT_FORM_VALUE);
+
   useEffect(() => {
     dispatch({ type: "setText", payload: DEFAULT_FORM_VALUE.text });
     dispatch({ type: "setRating", payload: DEFAULT_FORM_VALUE.rating });
   }, [formValue.name]);
+
+  const [createReview, result] = useCreateReviewMutation();
+
   return (
     <div className={className}>
       <h3 className={cn(styles.item, styles.header)}>Оставьте отзыв</h3>
@@ -65,6 +72,18 @@ export const ReviewForm = ({ className }) => {
             }
             value={formValue.text}
           />
+        </div>
+        <div
+          className={styles.item}
+          style={{ backgroundColor: "rgba(0,0,0,0)" }}
+        >
+          <LayoutButton
+            className={styles.button}
+            type="button"
+            onClick={() => createReview({ restaurantId, newReview: formValue })}
+          >
+            Оставить отзыв
+          </LayoutButton>
         </div>
       </form>
     </div>

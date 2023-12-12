@@ -14,7 +14,6 @@ export const Menu = ({ restaurant, className }) => {
         </marquee>
       </div>
     );
-  console.log(data);
 
   return (
     <div className={className}>

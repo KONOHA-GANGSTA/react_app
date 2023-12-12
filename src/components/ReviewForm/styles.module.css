@@ -5,6 +5,7 @@
   font-family: "IBM Plex Sans";
   margin: 15px;
   display: flex;
+  justify-content: center;
 }
 
 .layout {
@@ -27,4 +28,17 @@
 .header {
   background-color: rgb(135, 0, 0) !important;
   color: white;
+}
+
+.button {
+  height: 100%;
+  color: white;
+  background-color: rgb(135, 0, 0);
+  font-family: "IBM Plex Sans";
+  transition: 0.25s;
+}
+
+.button:hover {
+  color: rgb(135, 0, 0);
+  background-color: white;
 }
