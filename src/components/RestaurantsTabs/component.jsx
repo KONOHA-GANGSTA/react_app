@@ -1,9 +1,10 @@
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { RestaurantTab } from "../RestaurantTab/component";
 import styles from "./styles.module.css";
 import cn from "classnames";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectRestaurantsIds } from "../../redux/features/entities/restaurants/selectors";
+import { getRestaurants } from "../../redux/features/entities/restaurants/thunks/getRestaurants";
 
 const move_gradient = (event, layout, setGradPosition) => {
   let position =
@@ -12,7 +13,6 @@ const move_gradient = (event, layout, setGradPosition) => {
     ) + "%";
   setGradPosition({ transition: "None", left: position });
 };
-
 
 export const RestaurantsTabs = ({ selected, changeSelected, className }) => {
   const layout = useRef();
@@ -29,6 +29,11 @@ export const RestaurantsTabs = ({ selected, changeSelected, className }) => {
       left: "50%",
     });
   };
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getRestaurants());
+  }, []);
 
   const restaurantsIds = useSelector(selectRestaurantsIds);
 

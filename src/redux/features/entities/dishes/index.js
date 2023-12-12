@@ -1,13 +1,25 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { normalizedDishes } from "../../../../constants/normalized-mock";
+import { createEntityAdapter, createSlice } from "@reduxjs/toolkit";
+import { REQUEST_STATUSES } from "../../../../constants/request-statuses";
+import { getDishesByRestaurantId } from "./thunks/getDishesByRestaurantId";
+
+const entityAdapter = createEntityAdapter();
 
 export const dishesSlice = createSlice({
   name: "dishes",
-  initialState: {
-    entities: normalizedDishes.reduce((acc, dish) => {
-      acc[dish.id] = dish;
-      return acc;
-    }, {}),
-    ids: normalizedDishes.map(({ id }) => id),
+  initialState: entityAdapter.getInitialState({
+    status: REQUEST_STATUSES.idle,
+  }),
+  extraReducers: (builder) => {
+    builder
+      .addCase(getDishesByRestaurantId.pending, (state) => {
+        state.status = REQUEST_STATUSES.pending;
+      })
+      .addCase(getDishesByRestaurantId.fulfilled, (state, { payload }) => {
+        entityAdapter.upsertMany(state, payload);
+        state.status = REQUEST_STATUSES.fulfilled;
+      })
+      .addCase(getDishesByRestaurantId.rejected, (state) => {
+        state.status = REQUEST_STATUSES.rejected;
+      });
   },
 });
