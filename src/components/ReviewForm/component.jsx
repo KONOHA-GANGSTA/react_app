@@ -3,7 +3,6 @@ import { Counter } from "../Counter/component";
 import styles from "./styles.module.css";
 import cn from "classnames";
 import { LayoutButton } from "../LayoutButton/component";
-import { useCreateReviewMutation } from "../../redux/services/api";
 
 const DEFAULT_FORM_VALUE = {
   name: "",
@@ -25,24 +24,29 @@ const reducer = (state, action) => {
   }
 };
 
-export const ReviewForm = ({ restaurantId, className }) => {
-  const [formValue, dispatch] = useReducer(reducer, DEFAULT_FORM_VALUE);
-
-  useEffect(() => {
-    dispatch({ type: "setText", payload: DEFAULT_FORM_VALUE.text });
-    dispatch({ type: "setRating", payload: DEFAULT_FORM_VALUE.rating });
-  }, [formValue.name]);
-
-  const [createReview, result] = useCreateReviewMutation();
+export const ReviewForm = ({
+  className,
+  hideHeader,
+  defaultState,
+  buttonCallback,
+  restaurantId,
+}) => {
+  const [formValue, dispatch] = useReducer(
+    reducer,
+    defaultState ? defaultState : DEFAULT_FORM_VALUE
+  );
 
   return (
     <div className={className}>
-      <h3 className={cn(styles.item, styles.header)}>Оставьте отзыв</h3>
+      {hideHeader ? null : (
+        <h3 className={cn(styles.item, styles.header)}>Оставьте отзыв</h3>
+      )}
       <form className={styles.layout}>
         <div className={styles.item}>
           <input
             type="text"
             placeholder="Name"
+            disabled={defaultState}
             onChange={(event) =>
               dispatch({ type: "setName", payload: event.target.value })
             }
@@ -53,7 +57,10 @@ export const ReviewForm = ({ restaurantId, className }) => {
           <Counter
             number={formValue.rating}
             increment={() =>
-              dispatch({ type: "setRating", payload: formValue.rating + 0.5 })
+              dispatch({
+                type: "setRating",
+                payload: formValue.rating + 0.5,
+              })
             }
             decrement={() =>
               dispatch({ type: "setRating", payload: formValue.rating - 0.5 })
@@ -80,7 +87,14 @@ export const ReviewForm = ({ restaurantId, className }) => {
           <LayoutButton
             className={styles.button}
             type="button"
-            onClick={() => createReview({ restaurantId, newReview: formValue })}
+            onClick={() => {
+              if (defaultState)
+                buttonCallback({
+                  reviewId: defaultState.id,
+                  newReview: formValue,
+                });
+              else buttonCallback({ restaurantId, newReview: formValue });
+            }}
           >
             Оставить отзыв
           </LayoutButton>

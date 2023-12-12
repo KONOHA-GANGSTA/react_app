@@ -4,4 +4,19 @@
   padding: 15px;
   font-family: "IBM Plex Sans";
   margin: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.button {
+  color: white;
+  background-color: rgb(135, 0, 0);
+  font-family: "IBM Plex Sans";
+  transition: 0.25s;
+}
+
+.button:hover {
+  color: rgb(135, 0, 0);
+  background-color: white;
 }
