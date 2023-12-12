@@ -1,10 +1,9 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { RestaurantTab } from "../RestaurantTab/component";
 import styles from "./styles.module.css";
+import tabStyles from "../RestaurantTab/style.module.css";
 import cn from "classnames";
-import { useDispatch, useSelector } from "react-redux";
-import { selectRestaurantsIds } from "../../redux/features/entities/restaurants/selectors";
-import { getRestaurants } from "../../redux/features/entities/restaurants/thunks/getRestaurants";
+import { useGetRestaurantsQuery } from "../../redux/services/api";
 
 const move_gradient = (event, layout, setGradPosition) => {
   let position =
@@ -30,12 +29,16 @@ export const RestaurantsTabs = ({ selected, changeSelected, className }) => {
     });
   };
 
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getRestaurants());
-  }, []);
+  const { data, isLoading } = useGetRestaurantsQuery();
 
-  const restaurantsIds = useSelector(selectRestaurantsIds);
+  if (isLoading)
+    return (
+      <div className={cn(className, styles.tabs, tabStyles.tab)}>
+        <marquee scrolldelay={10} truespeed={1}>
+          Загружаем...
+        </marquee>
+      </div>
+    );
 
   return (
     <div
@@ -45,9 +48,9 @@ export const RestaurantsTabs = ({ selected, changeSelected, className }) => {
       onMouseLeave={leave}
     >
       <div className={styles.pointer} style={gradPosition} />
-      {restaurantsIds.map((restaurantId) => (
+      {data.map(({ name }) => (
         <RestaurantTab
-          id={restaurantId}
+          name={name}
           selected={selected}
           changeSelected={changeSelected}
           className={styles.topLevel}

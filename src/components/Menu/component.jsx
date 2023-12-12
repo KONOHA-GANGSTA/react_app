@@ -1,40 +1,28 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useGetDishesQuery } from "../../redux/services/api";
 import { Dish } from "../Dish/component";
 import styles from "./styles.module.css";
 import cn from "classnames";
-import { selectRestaurantMenuById } from "../../redux/features/entities/restaurants/selectors";
-import { useEffect } from "react";
-import { getDishesByRestaurantId } from "../../redux/features/entities/dishes/thunks/getDishesByRestaurantId";
-import { selectDishesLoadingStatus } from "../../redux/features/entities/dishes/selectors";
-import { REQUEST_STATUSES } from "../../constants/request-statuses";
 
-export const Menu = ({ restaurantId, className }) => {
-  const dispatch = useDispatch();
+export const Menu = ({ restaurant, className }) => {
+  const { data, isFetching } = useGetDishesQuery(restaurant.id);
 
-  useEffect(() => {
-    dispatch(getDishesByRestaurantId(restaurantId));
-  }, [restaurantId]);
-
-  const menu = useSelector((state) =>
-    selectRestaurantMenuById(state, restaurantId)
-  );
-
-  const loadingStatus = useSelector(selectDishesLoadingStatus);
-
-  if (loadingStatus === REQUEST_STATUSES.pending)
+  if (isFetching)
     return (
       <div className={cn(className, styles.item, styles.header)}>
-        <marquee>Загружаем</marquee>
+        <marquee scrolldelay={10} truespeed={1}>
+          Загружаем...
+        </marquee>
       </div>
     );
+  console.log(data);
 
   return (
     <div className={className}>
       <h2 className={cn(styles.item, styles.header)}>Меню</h2>
       <ul>
-        {menu.map((id) => (
+        {data.map(({ name }) => (
           <li className={styles.item}>
-            <Dish id={id} />
+            <Dish name={name} />
           </li>
         ))}
       </ul>
