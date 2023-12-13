@@ -33,8 +33,13 @@ export const ReviewForm = ({
 }) => {
   const [formValue, dispatch] = useReducer(
     reducer,
-    defaultState ? defaultState : DEFAULT_FORM_VALUE
+    defaultState ? { ...defaultState, name: "" } : DEFAULT_FORM_VALUE
   );
+
+  useEffect(() => {
+    if (defaultState)
+      dispatch({ type: "setName", payload: defaultState.userId }); //ну вместо имени пользователя
+  }, []);
 
   return (
     <div className={className}>
@@ -47,6 +52,7 @@ export const ReviewForm = ({
             type="text"
             placeholder="Name"
             disabled={defaultState}
+            value={formValue.name}
             onChange={(event) =>
               dispatch({ type: "setName", payload: event.target.value })
             }
