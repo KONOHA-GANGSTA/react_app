@@ -2,11 +2,13 @@ import { useEffect, useReducer } from "react";
 import { Counter } from "../Counter/component";
 import styles from "./styles.module.css";
 import cn from "classnames";
+import { LayoutButton } from "../LayoutButton/component";
 
 const DEFAULT_FORM_VALUE = {
   name: "",
   text: "",
   rating: 1,
+  userId: "a304959a-76c0-4b34-954a-b38dbf310360",
 };
 
 const reducer = (state, action) => {
@@ -22,20 +24,35 @@ const reducer = (state, action) => {
   }
 };
 
-export const ReviewForm = ({ className }) => {
-  const [formValue, dispatch] = useReducer(reducer, DEFAULT_FORM_VALUE);
+export const ReviewForm = ({
+  className,
+  hideHeader,
+  defaultState,
+  buttonCallback,
+  restaurantId,
+}) => {
+  const [formValue, dispatch] = useReducer(
+    reducer,
+    defaultState ? { ...defaultState, name: "" } : DEFAULT_FORM_VALUE
+  );
+
   useEffect(() => {
-    dispatch({ type: "setText", payload: DEFAULT_FORM_VALUE.text });
-    dispatch({ type: "setRating", payload: DEFAULT_FORM_VALUE.rating });
-  }, [formValue.name]);
+    if (defaultState)
+      dispatch({ type: "setName", payload: defaultState.userId }); //ну вместо имени пользователя
+  }, []);
+
   return (
     <div className={className}>
-      <h3 className={cn(styles.item, styles.header)}>Оставьте отзыв</h3>
+      {hideHeader ? null : (
+        <h3 className={cn(styles.item, styles.header)}>Оставьте отзыв</h3>
+      )}
       <form className={styles.layout}>
         <div className={styles.item}>
           <input
             type="text"
             placeholder="Name"
+            disabled={defaultState}
+            value={formValue.name}
             onChange={(event) =>
               dispatch({ type: "setName", payload: event.target.value })
             }
@@ -46,7 +63,10 @@ export const ReviewForm = ({ className }) => {
           <Counter
             number={formValue.rating}
             increment={() =>
-              dispatch({ type: "setRating", payload: formValue.rating + 0.5 })
+              dispatch({
+                type: "setRating",
+                payload: formValue.rating + 0.5,
+              })
             }
             decrement={() =>
               dispatch({ type: "setRating", payload: formValue.rating - 0.5 })
@@ -65,6 +85,25 @@ export const ReviewForm = ({ className }) => {
             }
             value={formValue.text}
           />
+        </div>
+        <div
+          className={styles.item}
+          style={{ backgroundColor: "rgba(0,0,0,0)" }}
+        >
+          <LayoutButton
+            className={styles.button}
+            type="button"
+            onClick={() => {
+              if (defaultState)
+                buttonCallback({
+                  reviewId: defaultState.id,
+                  newReview: formValue,
+                });
+              else buttonCallback({ restaurantId, newReview: formValue });
+            }}
+          >
+            Оставить отзыв
+          </LayoutButton>
         </div>
       </form>
     </div>

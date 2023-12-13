@@ -2,12 +2,10 @@ import { useState } from "react";
 import { Counter } from "../Counter/component";
 import styles from "./styles.module.css";
 import cn from "classnames";
-import { useSelector } from "react-redux";
-import { selectDishNameById } from "../../redux/features/entities/dishes/selectors";
 
-export const Dish = ({ id, className }) => {
+export const Dish = ({ name, className }) => {
   const [amount, setAmount] = useState(0);
-  const name = useSelector((state) => selectDishNameById(state, id));
+
   return (
     <div className={cn(styles.layout, className)}>
       <div>{name}</div>
